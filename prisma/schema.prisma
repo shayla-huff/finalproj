@@ -10,30 +10,73 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url = env("DATABASE_URL")
 }
 
 model User {
   id        String   @id @default(cuid())
   name      String?
   email     String   @unique
-  password  String
+  password  String   // hashed password
+  role      Role     @default(USER)
   orders    Order[]
-  role      String   @default("user") // "admin" for admin access
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Cause {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  products    Product[]
+  impactRecords ImpactRecord[]
 }
 
 model Product {
-  id        String   @id @default(cuid())
-  name      String
-  price     Float
-  image     String?
-  cause     String
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  price       Int       // store in cents
+  imageUrl    String?
+  category    String
   description String?
+  cause       Cause?    @relation(fields: [causeId], references: [id])
+  causeId     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orderItems  OrderItem[]
 }
 
 model Order {
-  id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
   userId    String
-  items     Json
+  createdAt DateTime    @default(now())
+  total     Int         // total in cents
+  items     OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Int      // price at time of purchase in cents
+}
+
+model ImpactRecord {
+  id        String   @id @default(cuid())
+  cause     Cause    @relation(fields: [causeId], references: [id])
+  causeId   String
+  amount    Int      // e.g. cents donated
+  note      String?
   createdAt DateTime @default(now())
 }
