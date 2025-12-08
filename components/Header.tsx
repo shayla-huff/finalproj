@@ -4,9 +4,9 @@ import NavBar from "./NavBar";
 
 export default function Header() {
     return (
-        <header>
-            <div>
-                <Link href="/">
+        <header className="header">
+            <div className="container header-inner">
+                <Link href="/" className="logo">
                     <span>
                         Dead Poets Café
                     </span>
