@@ -1,13 +1,49 @@
 // app/product/[id]/page.tsx
 import React from "react";
+import { notFound } from "next/navigation";
+import { products, causes } from "@/lib/data"; 
 
 type Props = { params: { id: string } };
 
 export default function Page({ params }: Props) {
+  const product = products.find((p) => p.slug === params.id);
+  if (!product) {
+    return notFound();
+  }
+
+  const cause = causes.find((c) => c.id === product.causeId);
+  
   return (
     <section>
-      <h1>Product: {params.id}</h1>
-      <p>Product detail placeholder for product <strong>{params.id}</strong>. Add product fetch and UI here.</p>
+      <div>
+        [Product Image]
+      </div>
+
+      <div>
+        <h1>
+          {product.name}
+        </h1>
+        <span>
+          ${product.price.toFixed(2)}
+        </span>
+
+        {cause && (
+          <div>
+            <strong>This purchase supports:</strong>
+            <div>{cause.name}</div>
+            <p>{cause.description}</p>
+          </div>
+        )}
+
+        <p>
+          {product.description}
+        </p>
+
+        <button>
+          Add to Cart
+        </button>
+      </div>
+
     </section>
   );
 }

@@ -1,23 +1,20 @@
 // app/layout.tsx
 import React from "react";
 import "./globals.css";
+import Header from "@/components/Header";
+import LayoutContainer from "@/components/LayoutContainer";
 
 export const metadata = {
-  title: "ImpactMarket",
-  description: "Cause-driven e-commerce",
+  title: "Dead Poets Café - Coffee for a Cause",
+  description: "Cause-driven e-commerce for coffee, merch, aand zines.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <header style={{ padding: "1rem", borderBottom: "1px solid #eee" }}>
-          <h2 style={{ margin: 0 }}>ImpactMarket</h2>
-        </header>
-        <main style={{ padding: "1.5rem" }}>{children}</main>
-        <footer style={{ padding: "1rem", borderTop: "1px solid #eee", marginTop: "2rem" }}>
-          <small>ImpactMarket — Coffee that funds creativity.</small>
-        </footer>
+        <Header />
+        <LayoutContainer>{children}</LayoutContainer>
       </body>
     </html>
   );
