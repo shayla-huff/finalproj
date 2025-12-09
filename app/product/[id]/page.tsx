@@ -2,6 +2,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { products, causes } from "@/lib/data"; 
+import AddToCartButton from "@/components/AddToCartButton";
 
 type Props = { params: { id: string } };
 
@@ -40,7 +41,7 @@ export default function Page({ params }: Props) {
         </p>
 
         <button>
-          Add to Cart
+          <AddToCartButton product={product} />
         </button>
       </div>
 

@@ -1,8 +1,8 @@
-// app/layout.tsx
 import React from "react";
 import "./globals.css";
 import Header from "@/components/Header";
 import LayoutContainer from "@/components/LayoutContainer";
+import { CartProvider } from "@/contexts/CartContent";
 
 export const metadata = {
   title: "Dead Poets Café - Coffee for a Cause",
@@ -13,8 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Header />
-        <LayoutContainer>{children}</LayoutContainer>
+        <CartProvider>
+          <Header /> 
+          <LayoutContainer>{children}</LayoutContainer>
+        </CartProvider>
       </body>
     </html>
   );
