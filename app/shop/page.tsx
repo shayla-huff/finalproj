@@ -1,16 +1,18 @@
-// app/shop/page.tsx
 import React from "react";
 import { products } from "@/lib/data";
 import ProductList from "@/components/ProductList";
 
 export default function Page() {
   return (
-    <section className="page-section">
-      <div className="product-grid">
-        <h1>Shop</h1>
-        <p>Browse all coffee, merch, and zines. Each product shows the cause it supports :)</p>
+    <section className="page-section shop-page">
+      <header className="shop-header">
+        <h1 className="page-heading">Shop</h1>
+        <p className="page-subtitle">Browse all coffee, merch, and zines. Each product shows the cause it supports</p>
+      </header>
+
+      <div className="shop-grid">
+          <ProductList products={products} />
       </div>
-      <ProductList products={products} />
     </section>
   );
 }

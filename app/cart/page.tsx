@@ -8,34 +8,42 @@ export default function Page() {
 
   if (items.length === 0) {
     return (
-      <p>Your cart is empty.</p>
+      <section className="page-section cart-empty">
+        <h1 className="page-heading">Your Cart</h1>
+        <p className="cart-empty-message">Your cart is empty.</p>
+      </section>
     );
   }
   
   return (
-    <section className="page-section">
-      <h1>Your Cart</h1>
+    <section className="page-section cart-page">
+      <h1 className="page-heading">Your Cart</h1>
 
       <div className="cart-list">
         {items.map((item) => (
           <div key= {item.id} className="cart-item">
             <div className="cart-item-info">
-              <strong>{item.name}</strong>
-              <p>${item.price.toFixed(2)}</p>
+              <strong className="cart-item-title">{item.name}</strong>
+              <p className="cart-item-meta">${item.price.toFixed(2)}</p>
             </div>
 
             <div className="cart-item-actions">
-              <input type="number" min={1} value={item.quantity} onChange=  {(e) =>
-                updateQuantity(item.id, Number(e.target.value))
-              }/>
-              <button className="btn btn-secondary" onClick={() => removeFromCart(item.id)}>Remove</button>
+              <label className="cart-quantity-label"> Quantity
+                <input type="number" min={1} value={item.quantity} onChange=  {(e) =>
+                  updateQuantity(item.id, Number(e.target.value))
+                } className="cart-quantity-input" />
+              </label>
+
+              <button onClick={() => removeFromCart(item.id)} className="btn btn-secondary">Remove</button>
+
             </div>
           </div>
         ))}
       </div>
 
       <div className="cart-subtotal">
-        <strong>Subtotal: </strong> ${subtotal.toFixed(2)}
+        <span className="cart-subtotal-label">Subtotal:</span> 
+        <span className="cart-subtotal-amount">${subtotal.toFixed(2)}</span>
       </div>
     </section>
   );
