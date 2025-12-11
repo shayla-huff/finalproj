@@ -21,12 +21,14 @@ export default function Page() {
     });
 
     const data = await res.json();
+
     if (!res.ok) {
       setError(data.error || "An error occurred while registering");
       return;
     }
 
-    router.push("/login");
+    saveSession(data.user);
+    router.push("/account");
   }
   
   return (
@@ -34,12 +36,26 @@ export default function Page() {
       <h1 className="page-heading">Register</h1>
       
       <form onSubmit={handleSubmit} className="auth-form">
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <input 
+          type="email" 
+          placeholder="Email" 
+          className="input"
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required
+        />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          className="input"
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required
+        />
 
         {error && <p className="form-error">{error}</p>}
 
-        <button type="submit" className="btn btn-primary">Creat account</button>
+        <button type="submit" className="btn btn-primary">Register</button>
       </form>
     </section>
   );

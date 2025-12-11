@@ -1,35 +1,60 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getSession, clearSession } from "@/lib/auth";
+import { getSession, clearSession, type SessionUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const [user, setUser] = useState<any>(null);
+  const [session, setSession] = useState<SessionUser | null>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const session = getSession();
-    if (session) {
+    const s = getSession();
+
+    if (!s) {
       router.push("/login");
     } else {
-      setUser(session);
+      setSession(s);
     }
+
+    setLoading(false);
   }, [router]);
 
-  if (!user) return null;
+  if (loading) {
+    return <p className="page-section">Loading...</p>;
+  }
+
+  if (!session) {
+    return null;
+  }
+
+  function handleLogout() {
+    clearSession();
+    setSession(null);
+    router.push("/");
+  }
 
   return (
-    <section className="page-section">
-      <h1 className="page-heading">Account</h1>
-      <p>Email: {user.email}</p>
-      <p>Role: {user.role}</p>
+    <section className="page-section account-page">
+      <header className="account-header">
+        <h1 className="page-heading">Your Account</h1>
+        <button onClick={handleLogout} className="btn btn-secondary">
+          Log Out
+        </button>
+      </header>
 
-      <button className="btn btn-secondary" onClick={() => {
-        clearSession();
-        router.push("/");
-      }}
-      >Log out</button>
+      <div className="account-info">
+        <p><strong>Email:</strong> {session.email}</p>
+      </div>
+
+      <section className="account-orders">
+        <h2 className="section-heading">Your Orders</h2>
+        <p className="muted">
+          Order history coming soon. For now, your account demonstrates protected
+          routing and login status.
+        </p>
+      </section>
     </section>
   );
 }
