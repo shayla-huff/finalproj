@@ -172,3 +172,38 @@ html, body {
   font-weight: 700;
   font-size: 1.15rem;
 }
+
+.impact-page {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.impact-header {
+  margin-bottom: 2rem;
+}
+
+.impact-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.impact-card {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.cause-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.cause-card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  border: 1px solid #eee;
+}
