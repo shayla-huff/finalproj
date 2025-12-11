@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";  
 import { getSession } from "@/lib/auth";
@@ -17,7 +19,7 @@ export default function Page() {
       <h1 className="page-heading">Admin — Products</h1>
       <p>Only admins can see this page.</p>
 
-      
+
     </section>
   );
 }
