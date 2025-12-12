@@ -34,14 +34,14 @@ export default function ProductCard({ product, cause }: Props) {
         <span className="product-price">
           ${product.price.toFixed(2)}
         </span>
-
-        {cause && <CauseBadge cause={cause} />}
       </div>
 
       <p className="product-description">
         {product.description}
       </p>
 
+        {cause && <CauseBadge cause={cause} />}
+        
       <button
         type="button"
         className="btn btn-primary"

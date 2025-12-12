@@ -10,9 +10,7 @@ export default function Page() {
         <p className="page-subtitle">Browse all coffee, merch, and zines. Each product shows the cause it supports</p>
       </header>
 
-      <div className="shop-grid">
           <ProductList products={products} />
-      </div>
     </section>
   );
 }

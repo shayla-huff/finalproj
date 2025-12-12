@@ -6,7 +6,7 @@ export default function Page() {
   const featured = products.filter((p) => p.isFeatured);
 
   return (
-    <section>
+    <section className="page-section home-page">
       <div>
         <div>
           <h1>
@@ -22,21 +22,19 @@ export default function Page() {
             support.
           </p>
         </div>
-        <div>
-          <h2>Our Impact</h2>
-          <ul>
-            <li>Funding youth literacy programs</li>
-            <li>Supporting local poets and artists</li>
-            <li>Backing banned-books initiatives</li>
+        <div className="impact-section">
+          <h2 className="page-heading">Our Impact</h2>
+          <ul className="impact-list">
+            <li className="impact-item">Funding youth literacy programs</li>
+            <li className="impact-item">Supporting local poets and artists</li>
+            <li className="impact-item">Backing banned-books initiatives</li>
           </ul>
         </div>
       </div>
 
       <div>
-        <h2>
-          Featured products
-        </h2>
-        <ProductList products={featured.length ? featured : products} />
+        <h2 className="section-heading">Featured products</h2>
+        <ProductList products={featured} />
       </div>
     </section>
   );

@@ -1,11 +1,4 @@
-// app/api/products/[id]/route.ts
 import { NextResponse } from "next/server";
-
-/**
- * Placeholder GET / PUT / DELETE for a single product.
- * Use `context.params.id` to access the dynamic route param.
- * Using `any` for the context avoids a brittle type mismatch during build.
- */
 
 export async function GET(req: Request, context: any) {
   const id = context?.params?.id ?? null;
