@@ -45,6 +45,21 @@ export default function Page() {
       </header>
 
       <div className="account-info">
+        <p>
+          <strong>Email:</strong> {session.email}
+        </p>
+
+        {session.role === "admin" && (
+          <p className="account-admin-note">
+            You are logged in as an <strong>admin</strong>.{" "}
+            <a href="/admin/products" className="link">
+              Go to Admin Dashboard
+            </a>
+          </p>
+        )}
+      </div>
+
+      <div className="account-info">
         <p><strong>Email:</strong> {session.email}</p>
       </div>
 
