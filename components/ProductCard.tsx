@@ -16,10 +16,12 @@ export default function ProductCard({ product, cause }: Props) {
 
   return (
     <article className="product-card">
-      <div className="product-image">
-        [ Image Placeholder ]
-      </div>
-
+      {product.imageUrl && (
+        <div className="product-image">
+            <img src={product.imageUrl} alt={product.name} className="product-image"/>
+        </div>
+      )}
+      
       <div className="product-main">
         <Link href={`/product/${product.slug}`} className="product-name">
           <strong>{product.name}</strong>
