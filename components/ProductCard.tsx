@@ -17,8 +17,12 @@ export default function ProductCard({ product, cause }: Props) {
   return (
     <article className="product-card">
       {product.imageUrl && (
-        <div className="product-image">
-            <img src={product.imageUrl} alt={product.name} className="product-image"/>
+        <div className="product-image-wrapper">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="product-image"
+          />
         </div>
       )}
       
@@ -48,3 +52,4 @@ export default function ProductCard({ product, cause }: Props) {
     </article>
   );
 }
+
