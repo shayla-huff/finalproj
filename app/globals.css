@@ -17,7 +17,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background: radial-gradient(circle at top left, #fdf7f1 0%, #f6eee6 45%, #f1e4d6 100%);
   color: var(--text-main);
 }
@@ -46,8 +46,6 @@ a {
   margin: 2rem auto;
   padding: 1.75rem 1.75rem 2rem;
   border-radius: 1.25rem;
-  background: var(--bg-alt);
-  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
