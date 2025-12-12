@@ -1,4 +1,3 @@
-// app/api/auth/login/route.ts
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
@@ -15,9 +14,7 @@ export async function POST(request: Request) {
     }
 
     const user = await prisma.user.findUnique({ where: { email } });
-
-    // user not found OR no password stored
-    if (!user || !user.password) {
+    if (!user) {
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 401 }
@@ -35,12 +32,12 @@ export async function POST(request: Request) {
     return NextResponse.json({
       id: user.id,
       email: user.email,
-      role: user.role ?? "user",
+      role: (user.role as "user" | "admin") ?? "user",
     });
   } catch (err) {
-    console.error("LOGIN ERROR", err);
+    console.error(err);
     return NextResponse.json(
-      { error: "Server error during login" },
+      { error: "Server error while logging in" },
       { status: 500 }
     );
   }
